@@ -8,7 +8,7 @@
     <script>
         function sendQuery() {
             axios.post(
-            "/submit", 
+            "/handleQuery", 
             {'query': document.getElementById('query').value},
             { headers: { 
                 "Content-Type": "multipart/form-data",
