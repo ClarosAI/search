@@ -20,6 +20,11 @@
               console.log(response.data);
               var br = document.createElement("br");
 
+              var element = document.getElementById("res");
+              while (element.firstChild) {
+                element.removeChild(element.firstChild);
+              }
+
               for (var i = 0; i < response.data.res.length; i++){
                   var tit = document.createElement("h3");
                   var tittext = document.createTextNode(response.data.res[i]['title'])
@@ -29,11 +34,6 @@
                   tit.appendChild(tittext);
                   tag.appendChild(text);
                   
-                  var element = document.getElementById("res");
-                  while (element.firstChild) {
-                      element.removeChild(element.firstChild);
-                  }
-
                   element.appendChild(br);
                   element.appendChild(tit);
                   element.appendChild(tag);
