@@ -17,17 +17,26 @@
 
             }}
             ).then((response) => {
-                console.log(response.data);
+              console.log(response.data);
+              var br = document.createElement("br");
+
               for (var i = 0; i < response.data.res.length; i++){
-                var tit = document.createElement("h3");
-                var tittext = document.createTextNode(response.data.res[i]['title'])
+                  var tit = document.createElement("h3");
+                  var tittext = document.createTextNode(response.data.res[i]['title'])
                   
-                  //var tag = document.createElement("p");
-                  //var text = document.createTextNode("Tutorix is the best e-learning platform");
-                tit.appendChild(tittext);
+                  var tag = document.createElement("p");
+                  var text = document.createTextNode(response.data.res[i]['text']);
+                  tit.appendChild(tittext);
+                  tag.appendChild(text);
                   
                   var element = document.getElementById("res");
+                  while (element.firstChild) {
+                      element.removeChild(element.firstChild);
+                  }
+
+                  element.appendChild(br);
                   element.appendChild(tit);
+                  element.appendChild(tag);
 
               }  
             })
