@@ -6,29 +6,18 @@
     <title></title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        function registerHorse() {
-            let data = new FormData();
-            var imagefile = document.querySelector('#horseimage');
-            data.append('horsename', document.getElementById('horsename').value)
-            data.append('horseimage', imagefile.files[0])
+        function sendQuery() {
             axios.post(
             "/submit", 
-            data,
+            {'query': document.getElementById('query').value},
             { headers: { 
                 "Content-Type": "multipart/form-data",
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+              "Authorization":  `Bearer ${document.getElementById('secret')}`
 
             }}
             ).then((response) => {
-                    if(response.data['success']==true || 
-                        (
-                            response.data['success']==false && 
-                            response.data['error']==="You have already submitted a solution!"
-                    )){
-                        alert('Horse submitted. See you at the Kentacky Derpy...')
                       console.log(response.data);
-                        //window.location.replace("https://puzzles.hack.gt");
-                    }else {console.log(response.data);}
             })
             .catch((error => {console.log(error);}))
         };
@@ -49,7 +38,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log()  
-            document.getElementById("submitbutt").addEventListener("click", registerHorse);
+            document.getElementById("submitbutt").addEventListener("click", sendQuery);
         });
     </script>
 
