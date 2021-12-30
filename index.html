@@ -11,7 +11,7 @@
             "https://mk1.diva.so:4242/handleQuery", 
             {'query': document.getElementById('query').value},
             { headers: { 
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
               "Authorization":  `Bearer ${document.getElementById('secret').value}`
 
