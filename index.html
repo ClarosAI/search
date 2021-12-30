@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function registerHorse() {
+            let data = new FormData();
+            var imagefile = document.querySelector('#horseimage');
+            data.append('horsename', document.getElementById('horsename').value)
+            data.append('horseimage', imagefile.files[0])
+            axios.post(
+            "/submit", 
+            data,
+            { headers: { 
+                "Content-Type": "multipart/form-data",
+                "Access-Control-Allow-Origin": "*"
+
+            }}
+            ).then((response) => {
+                    if(response.data['success']==true || 
+                        (
+                            response.data['success']==false && 
+                            response.data['error']==="You have already submitted a solution!"
+                    )){
+                        alert('Horse submitted. See you at the Kentacky Derpy...')
+                      console.log(response.data);
+                        //window.location.replace("https://puzzles.hack.gt");
+                    }else {console.log(response.data);}
+            })
+            .catch((error => {console.log(error);}))
+        };
+    </script>
+    </head>
+
+    <body>    
+        <section id="main"> 
+            <h2 style="text-align: center;">Find yo shit:</h2>
+      <center>
+            <label for="query">Query: </label>
+            <input type="text" id="query" name="query" placeholder="query">
+            <label for="query">Secret: </label>
+            <input type="text" id="secret" name="secret" placeholder="secret">
+            <button id="submitbutt"> I'm feeling sussy</button>
+       </center>
+    </section> 
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log()  
+            document.getElementById("submitbutt").addEventListener("click", registerHorse);
+        });
+    </script>
+
+    <!--<section id="sponsors"></section>-->
+
+
+  </body>
+</html>
