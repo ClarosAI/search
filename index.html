@@ -8,7 +8,7 @@
     <script>
         function sendQuery() {
             axios.post(
-            "/handleQuery", 
+            "https://mk1.diva.so:4242/handleQuery", 
             {'query': document.getElementById('query').value},
             { headers: { 
                 "Content-Type": "multipart/form-data",
