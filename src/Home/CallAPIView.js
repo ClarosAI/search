@@ -12,33 +12,42 @@ export default function CallAPIView() {
     // const [notionKey, setNotionKey] = useState("")
     const [updatingQuery, setUpdatingQuery] = useState("")
     const [output, setOutput] = useState([])
+    const [example, setExample] = useState("example")
     // const [updatingDatabase, setUpdatingDatabase] = useState("")
     // const [updatingCollection, setUpdatingCollection] = useState("")
     
 
 
     // useEffect(() => {
+    //     console.log(updatingQuery, output)
     //     const getNotionKey = async () => {
-    //         let response2 = await axios.get(getApiDomain() + "/retrieveinfo");
-    //         console.log(response2)
-    //         if (response2.data.fail===false) {
-    //             setNotionKey(response2.data.notionkey)
+    //       console.log(updatingQuery)
+    //       console.log('reached useeffect')
+    //       if (updatingQuery) {
+    //         console.log('true')
+    //         let response = await axios.post(getApiDomain()+"/handleQuery", {
+    //           query: updatingQuery
+    //         });
+    //         let total = []
+    //         for (let i = 0; i < response.data.res.length; i++) {
+    //           let val = response.data.res[i]
+    //           total.push([val['title'], val['text']])
     //         }
+    //         // window.alert("Session Information2:\n" + JSON.stringify(response.data, null, 2));
+    //         // window.alert('output'+total[0][0])
+    //         setOutput(total)
+    //       }
+    //         // console.log(response2)
+    //         // if (response2.data.fail===false) {
+    //         //     setNotionKey(response2.data.notionkey)
+    //         // }
     //     }
     //     getNotionKey();
     // }, []);
 
     function handleChange(event) {
         // setState({value: event.target.value});
-        setUpdatingQuery(event.target.value)
-        // console.log(event.target)
-        // if (event.target.name=='notionkey') {
-        //     setUpdatingNotionKey(event.target.value)
-        // } else if (event.target.name=='database') {
-        //     setUpdatingDatabase(event.target.value)
-        // } else {
-        //     setUpdatingCollection(event.target.value)
-        // }        
+        setUpdatingQuery(event.target.value)    
       }
 
     // async function callAPIClicked() {
@@ -54,33 +63,13 @@ export default function CallAPIView() {
         console.log('submitting!')
         // this will also automatically refresh the session if needed
         // let apiDomain = process.env.REACT_APP_API_URL|| "https://mk1.diva.so:4242/handleQuery" 
-        // let response = await axios.post(getApiDomain()+"/handleQuery", {
-        //     query: updatingQuery,
-        //   }
-        // );
+       
         console.log(updatingQuery)
 
-        axios.post(
-          "https://mk1.diva.so:4242/handleQuery", 
-          {'query': updatingQuery},
-          { headers: { 
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-            "Authorization":  `Bearer ${'hackgt'}`
-
-          }}
-          ).then((response) => {
-            console.log('worked dude')
-            for (var i = 0; i < response.data.res.length; i++) {
-              val = response.data.res[i]
-              total.append([val['title'], val['text']])
-            }
-            setOutput(total)
-            
-          })
-          .catch((error => {console.log(error);}))
-
-
+        let response = await axios.post(getApiDomain()+"/handleQuery", {
+            query: updatingQuery
+          }
+        );
         // let response = await axios.post(
         //   "https://mk1.diva.so:4242/handleQuery", 
         //   {'query': updatingQuery},
@@ -90,16 +79,22 @@ export default function CallAPIView() {
         //     "Authorization":  `Bearer ${'hackgt'}`
         //   }}
         //   )
-        // console.log('done with endpoint')
-        // // setNotionKey(response.data.notionkey)
+        console.log('done with endpoint')
+        console.log(response.data)
+        // setNotionKey(response.data.notionkey)
         // window.alert("cool beans");
-        // total = []
-        // for (var i = 0; i < response.data.res.length; i++) {
-        //   val = response.data.res[i]
-        //   total.append([val['title'], val['text']])
-        // }
-        // setOutput(total)
-        // window.alert('notion key set')
+        // window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2));
+        // window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2));
+
+        let total = []
+        for (let i = 0; i < response.data.res.length; i++) {
+          let val = response.data.res[i]
+          total.push([val['title'], val['text']])
+        }
+        // window.alert('output'+total[0][0])
+        setOutput(total)
+        setExample(total[0][0])
+        console.log(total[0])
     }
 
 
@@ -114,36 +109,26 @@ export default function CallAPIView() {
         {/* <div >
            Notion key: {notionKey}
         </div> */}
-        <form  onSubmit={submitSearch}>
+        {/* <form  onSubmit={submitSearch}>
         <label >
          Query:
          <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
-          {/* <input type="text" name="notionkey" value={updatingNotionKey} onChange={handleChange} /> */}
         </label>
-
-        {/* <label>
-        Insert Your Database Name:
-        <TextInput  name="database" value={updatingDatabase} onChange={handleChange} />
-        </label>
-
-        <label>
-        Insert Your Collection Name:
-        <TextInput  name="collection" value={updatingCollection} onChange={handleChange} />
-        </label> */}
-
         <Button type="submit" radius="md">Submit</Button>
+      </form> */}
+      Query: <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
+      <Button onClick={submitSearch} radius="md">Submit</Button>
 
-        {
+      {
           output && (
             output.map((outputPair) => (
               <>
-                <h3 >outputPair[0]</h3>
-                <h3 >outputPair[1]</h3>
+                <h2>{outputPair[0]}</h2>
+                <p>{outputPair[1]}</p>
               </>
               ))
             )
         }
-      </form>
     </div>
     );
 }
