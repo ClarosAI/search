@@ -1,9 +1,12 @@
 {
   "name": "spinarak",
   "version": "1.0.0",
+  "homepage": "https://search.diva.so",
   "description": "Engine to take a knowledge source and hydrate the hoard with the appropriate information",
   "main": "src/App.js",
   "scripts": {
+    "predeploy": "npm run build && cp CNAME build/CNAME",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "spa": "react-scripts start",
     "build": "react-scripts build",
@@ -28,6 +31,7 @@
     "axios": "^0.25.0",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
+    "gh-pages": "^3.2.3",
     "npm-run-all": "^4.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
