@@ -26,7 +26,7 @@ SuperTokens.init({
         apiBasePath: "api/v3/auth",
         websiteBasePath: "auth",
         apiDomain: "https://console.diva.so",
-        websiteDomain: "localhost:3000"
+        websiteDomain: "http://search.diva.so"
         // apiDomain: getApiDomain(), // TODO: Change to your app's API domain
         // websiteDomain: getWebsiteDomain(), // TODO: Change to your app's website domain
     },
