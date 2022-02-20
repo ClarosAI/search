@@ -23,8 +23,12 @@ export function getWebsiteDomain() {
 SuperTokens.init({
     appInfo: {
         appName: "Search", // TODO: Your app name
-        apiDomain: getApiDomain(), // TODO: Change to your app's API domain
-        websiteDomain: getWebsiteDomain(), // TODO: Change to your app's website domain
+        apiBasePath: "api/v3/auth",
+        websiteBasePath: "auth",
+        apiDomain: "https://console.diva.so",
+        websiteDomain: "localhost:3000"
+        // apiDomain: getApiDomain(), // TODO: Change to your app's API domain
+        // websiteDomain: getWebsiteDomain(), // TODO: Change to your app's website domain
     },
     recipeList: [
         EmailPassword.init({
