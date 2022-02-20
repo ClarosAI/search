@@ -32,10 +32,10 @@ SuperTokens.init({
                 mode: "REQUIRED",
             },
             getRedirectionURL: async (context) => {
-                if (context.action === "RESET_PASSWORD") {
-                    // called when the user clicked on the forgot password button
-                } else if (context.action === "SIGN_IN_AND_UP") {
+                console.log(context.action);
+                if (context.action === "SIGN_IN_AND_UP") {
                     // called when the user is navigating to sign in / up page
+                    return "/search"
                 } else if (context.action === "SUCCESS") {
                     // called on a successful sign in / up. Where should the user go next?
                     let redirectToPath = context.redirectToPath;
@@ -55,9 +55,9 @@ SuperTokens.init({
                 }
                 // return undefined to let the default behaviour play out
                 return undefined;
-            } 
+            }
         }),
-        Session.init(),
+        Session.init({sessionScope: ".diva.so"}),
     ],
 });
 
