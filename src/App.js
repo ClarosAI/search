@@ -9,13 +9,13 @@ import Footer from "./Footer";
 import SessionExpiredPopup from "./SessionExpiredPopup";
 
 export function getApiDomain() {
-    const apiPort = process.env.REACT_APP_API_PORT || 3001;
+    const apiPort = process.env.PORT || 3001;
     const apiUrl = process.env.REACT_APP_API_URL || `http://localhost:${apiPort}`;
     return apiUrl;
 }
 
 export function getWebsiteDomain() {
-    const websitePort = process.env.REACT_APP_WEBSITE_PORT || 3000;
+    const websitePort = process.env.PORT || 3000;
     const websiteUrl = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${websitePort}`;
     return websiteUrl;
 }
@@ -27,44 +27,14 @@ SuperTokens.init({
         websiteBasePath: "auth",
         apiDomain: getApiDomain(),
         websiteDomain: getWebsiteDomain()
-//        apiDomain: "localhost:9000",
-//        websiteDomain: "localhost:3000"
-        // apiDomain: getApiDomain(), // TODO: Change to your app's API domain
-        // websiteDomain: getWebsiteDomain(), // TODO: Change to your app's website domain
     },
     recipeList: [
         EmailPassword.init({
             emailVerificationFeature: {
                 mode: "REQUIRED",
             },
-//             getRedirectionURL: async (context) => {
-//                 console.log(context.action);
-//                 if (context.action === "SIGN_IN_AND_UP") {
-//                     // called when the user is navigating to sign in / up page
-//                     return "/auth"
-//                 } else if (context.action === "SUCCESS") {
-//                     // called on a successful sign in / up. Where should the user go next?
-//                     let redirectToPath = context.redirectToPath;
-//                     if (redirectToPath !== undefined) {
-//                         // we are navigating back to where the user was before they authenticated
-//                         return redirectToPath;
-//                     }
-//                     if (context.isNewUser) {
-//                         // user signed up
-//                         return "/onboarding"
-//                     } else {
-//                         // user signed in
-//                         return "/dashboard"
-//                     }
-//                 } else if (context.action === "VERIFY_EMAIL") {
-//                     // called when the user is to be shown the verify email screen
-//                 }
-//                 // return undefined to let the default behaviour play out
-//                 return undefined;
-//             }
         }),
         Session.init({sessionScope: ".diva.so"}),
-        // Session.init()
     ],
 });
 

@@ -9,7 +9,6 @@ Session.addAxiosInterceptors(axios);
 
 export default function CallAPIView() {
 
-    // const [notionKey, setNotionKey] = useState("")
     const [updatingQuery, setUpdatingQuery] = useState("")
     const [output, setOutput] = useState([])
     const [example, setExample] = useState("example")
@@ -60,15 +59,13 @@ export default function CallAPIView() {
 
 
     async function submitSearch(event) {
-        console.log('submitting!')
-        // this will also automatically refresh the session if needed
-        // let apiDomain = process.env.REACT_APP_API_URL|| "https://mk1.diva.so:4242/handleQuery" 
-       
-        console.log(updatingQuery)
-
-        let response = await axios.post(getApiDomain()+"/handleQuery", {
-            query: updatingQuery
-          }
+        let memorizerURL = process.env.MEMORIZER_URL|| "https://mk1.diva.so:4242/handleQuery" 
+        let response = await axios.post(memorizerURL,
+            {query: updatingQuery},
+            {headers: { 
+               "Content-Type": "application/json",
+               "Access-Control-Allow-Origin": "*",
+            }}
         );
         // let response = await axios.post(
         //   "https://mk1.diva.so:4242/handleQuery", 
