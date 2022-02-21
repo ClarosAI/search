@@ -23,10 +23,12 @@ export function getWebsiteDomain() {
 SuperTokens.init({
     appInfo: {
         appName: "Search", // TODO: Your app name
-        apiBasePath: "api/v3/auth",
+        apiBasePath: "/api/v3/auth",
         websiteBasePath: "auth",
-        apiDomain: "https://console.diva.so",
-        websiteDomain: "http://search.diva.so"
+        apiDomain: getApiDomain(),
+        websiteDomain: getWebsiteDomain()
+//        apiDomain: "localhost:9000",
+//        websiteDomain: "localhost:3000"
         // apiDomain: getApiDomain(), // TODO: Change to your app's API domain
         // websiteDomain: getWebsiteDomain(), // TODO: Change to your app's website domain
     },
@@ -35,33 +37,34 @@ SuperTokens.init({
             emailVerificationFeature: {
                 mode: "REQUIRED",
             },
-            getRedirectionURL: async (context) => {
-                console.log(context.action);
-                if (context.action === "SIGN_IN_AND_UP") {
-                    // called when the user is navigating to sign in / up page
-                    return "/search"
-                } else if (context.action === "SUCCESS") {
-                    // called on a successful sign in / up. Where should the user go next?
-                    let redirectToPath = context.redirectToPath;
-                    if (redirectToPath !== undefined) {
-                        // we are navigating back to where the user was before they authenticated
-                        return redirectToPath;
-                    }
-                    if (context.isNewUser) {
-                        // user signed up
-                        return "/onboarding"
-                    } else {
-                        // user signed in
-                        return "/dashboard"
-                    }
-                } else if (context.action === "VERIFY_EMAIL") {
-                    // called when the user is to be shown the verify email screen
-                }
-                // return undefined to let the default behaviour play out
-                return undefined;
-            }
+//             getRedirectionURL: async (context) => {
+//                 console.log(context.action);
+//                 if (context.action === "SIGN_IN_AND_UP") {
+//                     // called when the user is navigating to sign in / up page
+//                     return "/auth"
+//                 } else if (context.action === "SUCCESS") {
+//                     // called on a successful sign in / up. Where should the user go next?
+//                     let redirectToPath = context.redirectToPath;
+//                     if (redirectToPath !== undefined) {
+//                         // we are navigating back to where the user was before they authenticated
+//                         return redirectToPath;
+//                     }
+//                     if (context.isNewUser) {
+//                         // user signed up
+//                         return "/onboarding"
+//                     } else {
+//                         // user signed in
+//                         return "/dashboard"
+//                     }
+//                 } else if (context.action === "VERIFY_EMAIL") {
+//                     // called when the user is to be shown the verify email screen
+//                 }
+//                 // return undefined to let the default behaviour play out
+//                 return undefined;
+//             }
         }),
         Session.init({sessionScope: ".diva.so"}),
+        // Session.init()
     ],
 });
 

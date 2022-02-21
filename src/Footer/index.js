@@ -12,7 +12,6 @@ export default function Footer() {
                 color: "#ffffff",
                 fontWeight: "bold",
             }}>
-            {/* React Demo app. Made with ❤️ using SuperTokens.io */}
             Diva Auth app
         </div>
     );
