@@ -34,7 +34,9 @@ SuperTokens.init({
                 mode: "REQUIRED",
             },
         }),
-        Session.init({sessionScope: ".diva.so"}),
+        Session.init({
+            sessionScope: ".diva.so",
+            cookieDomain: ".diva.so" }),
     ],
 });
 

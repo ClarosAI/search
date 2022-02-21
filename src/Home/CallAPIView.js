@@ -62,10 +62,13 @@ export default function CallAPIView() {
         let memorizerURL = process.env.MEMORIZER_URL|| "https://mk1.diva.so:4242/handleQuery" 
         let response = await axios.post(memorizerURL,
             {query: updatingQuery},
-            {headers: { 
+            {
+                withCredentials: true,
+                headers: { 
                "Content-Type": "application/json",
                "Access-Control-Allow-Origin": "*",
-            }}
+                }
+            }
         );
         // let response = await axios.post(
         //   "https://mk1.diva.so:4242/handleQuery", 
