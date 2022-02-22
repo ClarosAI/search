@@ -13,7 +13,6 @@ export default function CallAPIView() {
 
     const [updatingQuery, setUpdatingQuery] = useState("")
     const [output, setOutput] = useState([
-      // ['testing', 'mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work? mctesty test does this work?'], ['testing', 'mctesty test does this work?'], ['testing', 'mctesty test does this work?'], ['testing', 'mctesty test does this work?'], ['testing', 'mctesty test does this work?'], ['testing', 'mctesty test does this work?'], ['testing', 'mctesty test does this work?']
     ])
     const [example, setExample] = useState("example")
     // const [updatingDatabase, setUpdatingDatabase] = useState("")
