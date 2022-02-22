@@ -23,7 +23,7 @@ export function getWebsiteDomain() {
 SuperTokens.init({
     appInfo: {
         appName: "Search", // TODO: Your app name
-        apiBasePath: "/api/v3/auth",
+        apiBasePath: "/auth",
         websiteBasePath: "auth",
         apiDomain: getApiDomain(),
         websiteDomain: getWebsiteDomain()
@@ -34,9 +34,11 @@ SuperTokens.init({
                 mode: "REQUIRED",
             },
         }),
-        Session.init({
-            sessionScope: ".diva.so",
-            cookieDomain: ".diva.so" }),
+        Session.init(
+            // {
+            // sessionScope: ".diva.so",
+            // cookieDomain: ".diva.so" }
+            ),
     ],
 });
 
