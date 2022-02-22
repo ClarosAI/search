@@ -1,3 +1,5 @@
+
+
 import axios from "axios";
 import Session from "supertokens-auth-react/recipe/session";
 import { getApiDomain } from "../App";
@@ -10,7 +12,8 @@ Session.addAxiosInterceptors(axios);
 export default function CallAPIView() {
 
     const [updatingQuery, setUpdatingQuery] = useState("")
-    const [output, setOutput] = useState([])
+    const [output, setOutput] = useState([
+    ])
     const [example, setExample] = useState("example")
     // const [updatingDatabase, setUpdatingDatabase] = useState("")
     // const [updatingCollection, setUpdatingCollection] = useState("")
@@ -99,33 +102,24 @@ export default function CallAPIView() {
 
 
     return (
-        <div>
-        {/* <div onClick={updateNotionKey} className="sessionButton">
-            Add your Notion Key
-        </div> */}
-         {/* <div onClick={callAPIClicked} className="sessionButton">
-            Call API
-        </div> */}
-        {/* <div >
-           Notion key: {notionKey}
-        </div> */}
-        {/* <form  onSubmit={submitSearch}>
-        <label >
-         Query:
-         <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
-        </label>
-        <Button type="submit" radius="md">Submit</Button>
-      </form> */}
-      Query: <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
-      <Button onClick={submitSearch} radius="md">Submit</Button>
+        <div className="container">
+          <div className="form">
+            Query: 
+          </div>
+          <div className="form">
+            <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
+          </div>
+          <div className="form">
+            <Button onClick={submitSearch} radius="md">Submit</Button>
+          </div>
 
       {
           output && (
             output.map((outputPair) => (
-              <>
-                <h2>{outputPair[0]}</h2>
-                <p>{outputPair[1]}</p>
-              </>
+              <div className="output">
+                <h2 >{outputPair[0]}</h2>
+                <p >{outputPair[1]}</p>
+              </div>
               ))
             )
         }
