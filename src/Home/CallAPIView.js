@@ -6,7 +6,9 @@ import { getApiDomain } from "../App";
 import React, { useState, useEffect } from 'react';
 import { Button, TextInput } from '@mantine/core';
 import '../App.css'
- 
+import ReactMarkdown from 'react-markdown'
+import ReactDom from 'react-dom'
+
 Session.addAxiosInterceptors(axios);
 
 export default function CallAPIView() {
@@ -117,8 +119,7 @@ export default function CallAPIView() {
           output && (
             output.map((outputPair) => (
               <div className="output">
-                <h2 >{outputPair[0]}</h2>
-                <p >{outputPair[1]}</p>
+                  <ReactMarkdown>{outputPair[1]}</ReactMarkdown>
               </div>
               ))
             )
