@@ -1,7 +1,39 @@
+
+import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { getApiDomain } from "../App";
+
 export default function Logout(props) {
     let logoutClicked = props.logoutClicked;
 
+    const [email, setEmail] = useState("")
+
+    useEffect(() => {
+        const getNotionKey = async () => {
+            let response2 = await axios.get(getApiDomain() + "/sessioninfo");
+            setEmail(response2.data.email)
+            console.log('here')
+            console.log(response2)
+        }
+        getNotionKey();
+    }, []); 
+
     return (
+        <div >
+
+<div
+
+style={{
+    display: "flex",
+    height: "40px",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    // paddingLeft: "75px",
+    paddingRight: "75px",
+    fontWeight: "bold",
+}}>
+        
+         {email}</div>
         <div
             style={{
                 display: "flex",
@@ -11,6 +43,8 @@ export default function Logout(props) {
                 paddingLeft: "75px",
                 paddingRight: "75px",
             }}>
+                {/* <div> {email}</div> */}
+                
             <div
                 onClick={logoutClicked}
                 style={{
@@ -27,6 +61,20 @@ export default function Logout(props) {
                 }}>
                 SIGN OUT
             </div>
+        </div>
+        {/* <div
+
+style={{
+    display: "flex",
+    height: "40px",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    // paddingLeft: "75px",
+    paddingRight: "75px",
+    fontWeight: "bold",
+}}>
+        
+         {email}</div> */}
         </div>
     );
 }
