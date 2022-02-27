@@ -53,15 +53,15 @@
      /* background-color: black; */
 }
 
-.output h2 {
+.output h1 {
     /* padding-left: 20%;
     padding-right: 20%;
     padding-top: 1%;
     padding-bottom: 1%; */
     /* padding: 1%; */
     /* padding-right: 13px; */
-    font-size: 28px;
-     /* background-color: black; */
+    font-size: 24px;
+    color: #333333; 
 }
 
 
@@ -72,7 +72,7 @@
     padding-bottom: 1%; */
     /* padding: 1%; */
     /* padding-right: 33px; */
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
-     /* background-color: black; */
+    color: #333333;
 }
