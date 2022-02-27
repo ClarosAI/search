@@ -1,5 +1,5 @@
 import React from "react";
-import Logout from "./Logout";
+import Navbar from "./Navbar";
 import SuccessView from "./SuccessView";
 import { useSessionContext } from "supertokens-auth-react/recipe/session";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +13,17 @@ export default function Home() {
         await signOut();
         navigate("/auth");
     }
+    function redirectToConsole() {
+        window.location.href = "https://console.diva.so";
+    }
 
     return (
         <div className="fill">
-            <Logout logoutClicked={logoutClicked} />
+            <Navbar logoutClicked={logoutClicked} redirectToConsole={redirectToConsole}/>
             <SuccessView userId={userId} />
         </div>
     );
 }
+
+
+
