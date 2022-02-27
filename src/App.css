@@ -61,7 +61,7 @@
     /* padding: 1%; */
     /* padding-right: 13px; */
     font-size: 24px;
-     /* background-color: #333333; */
+    color: #333333; 
 }
 
 
@@ -74,5 +74,5 @@
     /* padding-right: 33px; */
     font-size: 16px;
     font-weight: normal;
-     /* background-color: #333333; */
+    color: #333333;
 }
