@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import Session from "supertokens-auth-react/recipe/session";
 import { getApiDomain } from "../App";
@@ -8,7 +6,7 @@ import { Button, TextInput } from '@mantine/core';
 import '../App.css'
 import ReactMarkdown from 'react-markdown'
 import ReactDom from 'react-dom'
-
+ 
 Session.addAxiosInterceptors(axios);
 
 export default function CallAPIView() {
@@ -21,45 +19,24 @@ export default function CallAPIView() {
     // const [updatingCollection, setUpdatingCollection] = useState("")
     
 
-
-    // useEffect(() => {
-    //     console.log(updatingQuery, output)
-    //     const getNotionKey = async () => {
-    //       console.log(updatingQuery)
-    //       console.log('reached useeffect')
-    //       if (updatingQuery) {
-    //         console.log('true')
-    //         let response = await axios.post(getApiDomain()+"/handleQuery", {
-    //           query: updatingQuery
-    //         });
-    //         let total = []
-    //         for (let i = 0; i < response.data.res.length; i++) {
-    //           let val = response.data.res[i]
-    //           total.push([val['title'], val['text']])
-    //         }
-    //         // window.alert("Session Information2:\n" + JSON.stringify(response.data, null, 2));
-    //         // window.alert('output'+total[0][0])
-    //         setOutput(total)
-    //       }
-    //         // console.log(response2)
-    //         // if (response2.data.fail===false) {
-    //         //     setNotionKey(response2.data.notionkey)
-    //         // }
-    //     }
-    //     getNotionKey();
-    // }, []);
-
     function handleChange(event) {
         // setState({value: event.target.value});
         setUpdatingQuery(event.target.value)    
       }
 
-    // async function callAPIClicked() {
-    //     // this will also automatically refresh the session if needed
-    //     let response = await axios.post(getApiDomain() + "/sessioninfo");
-    //     window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2));
-    //     window.alert('hello')
-    // }
+      useEffect(() => {
+        const listener = async (event) => {
+          if (event.code === "Enter" || event.code === "NumpadEnter") {
+            console.log("Enter key was pressed. Run your function.");
+            await submitSearch(event)
+            event.preventDefault();
+          }
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+          document.removeEventListener("keydown", listener);
+        };
+      }, []);
 
 
 
@@ -119,7 +96,7 @@ export default function CallAPIView() {
           output && (
             output.map((outputPair) => (
               <div className="output">
-                  <ReactMarkdown>{outputPair[1]}</ReactMarkdown>
+                <ReactMarkdown>{outputPair[1]}</ReactMarkdown>
               </div>
               ))
             )
