@@ -23,21 +23,13 @@ export default function CallAPIView() {
         // setState({value: event.target.value});
         setUpdatingQuery(event.target.value)    
       }
-
-      useEffect(() => {
-        const listener = async (event) => {
-          if (event.code === "Enter" || event.code === "NumpadEnter") {
-            console.log("Enter key was pressed. Run your function.");
-            await submitSearch(event)
-            event.preventDefault();
-          }
-        };
-        document.addEventListener("keydown", listener);
-        return () => {
-          document.removeEventListener("keydown", listener);
-        };
-      }, []);
-
+    
+    const handleKeyDown = async (event) => {
+      if (event.key === 'Enter') {
+        console.log('do validate')
+        await submitSearch(event)
+      }
+    }
 
 
     async function submitSearch(event) {
@@ -86,7 +78,7 @@ export default function CallAPIView() {
             Query: 
           </div>
           <div className="form">
-            <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
+            <TextInput  name="query" value={updatingQuery} onChange={handleChange}  onKeyDown={handleKeyDown} />
           </div>
           <div className="form">
             <Button onClick={submitSearch} radius="md">Submit</Button>
