@@ -22,21 +22,14 @@ export default function CallAPIView() {
     function handleChange(event) {
         // setState({value: event.target.value});
         setUpdatingQuery(event.target.value)    
-      }
+    }
 
-      useEffect(() => {
-        const listener = async (event) => {
-          if (event.code === "Enter" || event.code === "NumpadEnter") {
-            console.log("Enter key was pressed. Run your function.");
-            await submitSearch(event)
-            event.preventDefault();
-          }
-        };
-        document.addEventListener("keydown", listener);
-        return () => {
-          document.removeEventListener("keydown", listener);
-        };
-      }, []);
+    const handleKeyDown = async (event) => {
+      if (event.key === 'Enter') {
+        console.log('enter pressed')
+        await submitSearch(event)
+      }
+    }
 
 
 
@@ -63,17 +56,12 @@ export default function CallAPIView() {
         //   )
         console.log('done with endpoint')
         console.log(response.data)
-        // setNotionKey(response.data.notionkey)
-        // window.alert("cool beans");
-        // window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2));
-        // window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2));
 
         let total = []
         for (let i = 0; i < response.data.res.length; i++) {
           let val = response.data.res[i]
           total.push([val['title'], val['text']])
         }
-        // window.alert('output'+total[0][0])
         setOutput(total)
         setExample(total[0][0])
         console.log(total[0])
@@ -86,12 +74,11 @@ export default function CallAPIView() {
             Query: 
           </div>
           <div className="form">
-            <TextInput  name="query" value={updatingQuery} onChange={handleChange} />
+            <TextInput  name="query" value={updatingQuery} onChange={handleChange}  onKeyDown={handleKeyDown} />
           </div>
           <div className="form">
             <Button onClick={submitSearch} radius="md">Submit</Button>
           </div>
-
       {
           output && (
             output.map((outputPair) => (
