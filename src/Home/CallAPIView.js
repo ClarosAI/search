@@ -91,7 +91,6 @@ export default function CallAPIView() {
           <div className="form">
             <Button onClick={submitSearch} radius="md">Submit</Button>
           </div>
-
       {
           output && (
             output.map((outputPair) => (
