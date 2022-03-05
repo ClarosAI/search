@@ -12,7 +12,7 @@ export default function Footer() {
                 color: "#ffffff",
                 fontWeight: "bold",
             }}>
-            Diva Auth app
+            😎 Diva Labs 
         </div>
     );
 }
