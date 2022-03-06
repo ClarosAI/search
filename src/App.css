@@ -10,8 +10,15 @@
     display: flex; 
     flex-direction: column;
     justify-content: center;
-    flex: 1;
+    flex: 1; 
+    word-break: break-word !important;
+    align-items: normal !important;
 }
+
+.navbar {
+    align-items: normal !important;
+}
+
 
 .sessionButton {
     padding-left: 13px;
@@ -60,7 +67,7 @@
     padding-bottom: 1%; */
     /* padding: 1%; */
     /* padding-right: 13px; */
-    font-size: 24px;
+    font-size: 30px;
     color: #333333; 
 }
 
@@ -72,7 +79,7 @@
     padding-bottom: 1%; */
     /* padding: 1%; */
     /* padding-right: 33px; */
-    font-size: 16px;
+    font-size: 24px;
     font-weight: normal;
     color: #333333;
 }

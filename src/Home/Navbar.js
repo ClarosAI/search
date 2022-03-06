@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import { getApiDomain } from "../App";
+import "../App.css";
 
 export default function Logout(props) {
     let logoutClicked = props.logoutClicked;
@@ -20,14 +21,13 @@ export default function Logout(props) {
     }, []); 
 
     return (
-        <div >
-            <div
+        <div className="navbar">
+            <div  
             style={{
                 display: "flex",
                 height: "40px",
-                alignItems: "center",
                 justifyContent: "flex-end",
-
+                alignItems: "center",
                 paddingRight: "75px",
                 fontWeight: "bold",
                 }}>
@@ -51,8 +51,8 @@ export default function Logout(props) {
                         height: "42px",
                         backgroundColor: "#000000",
                         borderRadius: "10px",
-                        cursor: "pointer",
                         alignItems: "center",
+                        cursor: "pointer",
                         justifyContent: "center",
                         color: "#ffffff",
                         fontWeight: "bold",
